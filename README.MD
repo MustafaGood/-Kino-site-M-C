@@ -1,171 +1,211 @@
-#Uppgifts-beskrivning
+## Projektöversikt
 
-1.	Planering	
+Kino-site är en komplett webblösning för biografer som tillhandahåller:
 
-
-Docs, UML, Iterationer, 
-
-
-
-
-2.	Agile projektmetod	
-	
-Kanban Projektmetod
-
-
-
-
-3.	Projektverktyg (Github eller Trello)	
-
-
-Github Projects
-
-
-
-
-4.	Gitflöde - commits, branches, PR, reviews och merge.
-	
-Dokumentera gitflöde
-
-
-
-
-5.	Arbetsflöde - kvalitetskriterier för kod och projekt, t ex hur en review ska gå till. Hur testning av kod ska gå till … Detta ska vara dokumenterat i en readmen eller wiki	
-	
-Vi skapar en välformaterad Readme.md för att visa all nödvändig information.
-
-
-
-
-6.	Tillvägagångssätt för refactorering där tidigare applikationer agerar förlaga för    utseende/design och funktioner. Där planen ska visa vad som bara ska refactieras
-och vad som ska ändras i design eller funktion.
-
-
-En helt vanlig refaktorerings-plan som följer Kanban-metoden och visar enligt kriterier som andreas nämner ovanför.
-
-
-
-
-
-# Projektplan
-
-## Översikt
-Projekt för att skapa en Kino-hemsida först i Node.js och sedan refaktorera till Next.js.
-
-## Kärnfunktioner
-1. **Inloggning** - Användarsystem med registrering och autentisering
-2. **Platsbokning** - Bokning av platser till filmvisningar
-3. **Egen filmdatabas** - Hantering av filmer och visningar
-4. **Statiska informationssidor** - Om oss, kontakt, etc.
-5. **Recensioner** - Användare kan skriva och läsa filmrecensioner
+- **Filmvisning** - Utforska aktuella filmer med detaljerad information
+- **Platsbokning** - Boka biografplatser för önskade visningar  
+- **Användarkonton** - Registrering, inloggning och profilhantering
+- **Recensionssystem** - Skriv och läs filmrecensioner
+- **Administratörspanel** - Hantera filmer, visningar och bokningar
 
 ## Teknisk Stack
 
-### Node.js App (Fas 1)
-- **Backend**: Node.js + Express
+### Fas 1: Node.js Implementation
+- **Backend**: Node.js + Express.js
 - **Frontend**: EJS templates + vanilla JavaScript
 - **Databas**: MongoDB + Mongoose
 - **Autentisering**: Express-session + bcrypt
-- **Tester**: Jest för komponenttester
 - **Styling**: CSS3 + Bootstrap
+- **Testning**: Jest
 
-### Next.js App (Fas 2 - Refaktorering)
+### Fas 2: Next.js Refaktorering
 - **Framework**: Next.js (React)
 - **API**: Next.js API routes
-- **Databas**: MongoDB (samma som fas 1)
-- **Styling**: CSS Modules eller Styled Components
+- **Styling**: CSS Modules
+- **Databas**: MongoDB (bibehålls från fas 1)
 
-## Projektstruktur Node.js
+## Snabbstart
+
+### Förutsättningar
+- Node.js (v16 eller senare)
+- MongoDB (lokal installation eller MongoDB Atlas)
+- Git
+
+### Installation
+
+```powershell
+# Klona repository
+git clone [repository-url]
+cd kino-site-M-C
+
+# Installera dependencies
+npm install
+
+# Konfigurera miljövariabler
+cp .env.example .env
+# Redigera .env med dina databas-inställningar
+
+# Starta utvecklingsserver
+npm run dev
+```
+
+### Tillgängliga Kommandon
+
+```powershell
+npm run dev          # Startar utvecklingsserver
+npm run build        # Bygger applikationen för produktion
+npm start           # Startar produktionsserver
+npm test            # Kör alla tester
+npm run test:watch  # Kör tester i watch-mode
+npm run lint        # Kontrollerar kodkvalitet
+```
+
+## Projektstruktur
 
 ```
-kino-site/
-├── src/
-│   ├── controllers/     # Route handlers
-│   ├── models/         # MongoDB modeller
-│   ├── routes/         # Express routes
-│   ├── middleware/     # Custom middleware
-│   ├── utils/          # Hjälpfunktioner
-│   └── config/         # Konfiguration
-├── public/             # Statiska filer
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── views/              # EJS templates
-│   ├── layouts/
-│   ├── partials/
-│   └── pages/
-├── tests/              # Jest tester
-├── docs/               # Dokumentation
-└── package.json
+kino-site-M-C/
+├── docs/                    # Projektdokumentation
+├── src/                     # Källkod
+│   ├── controllers/         # Route handlers och business logic
+│   ├── models/             # MongoDB modeller
+│   ├── routes/             # Express routes
+│   ├── middleware/         # Custom middleware
+│   ├── utils/              # Hjälpfunktioner
+│   └── config/             # Konfigurationsfiler
+├── views/                  # EJS templates
+│   ├── layouts/            # Layout templates
+│   ├── pages/              # Sidspecifika templates
+│   └── partials/           # Återanvändbara komponenter
+├── public/                 # Statiska filer (CSS, JS, bilder)
+├── tests/                  # Test suites
+└── package.json           # Projekt konfiguration
 ```
 
-## API Design
+## Dokumentation
 
-### Endpoints
-- **POST** `/api/auth/register` - Registrera användare
-- **POST** `/api/auth/login` - Logga in
-- **GET** `/api/movies` - Hämta alla filmer
-- **GET** `/api/movies/:id` - Hämta specifik film
-- **POST** `/api/movies` - Skapa ny film (admin)
-- **GET** `/api/showtimes` - Hämta visningar
-- **POST** `/api/bookings` - Skapa bokning
-- **GET** `/api/bookings/:userId` - Hämta användarens bokningar
-- **POST** `/api/reviews` - Skapa recension
-- **GET** `/api/reviews/:movieId` - Hämta recensioner för film
+Omfattande projektdokumentation finns i [`docs/`](./docs/) mappen:
 
-## Arbetsfördelning (2 personer)
+### 📋 [Projektledning](./docs/PROJEKTLEDNING.md)
+- Agil projektmetod och Sprint planning
+- Git workflow och branching strategy
+- Kvalitetskriterier och Definition of Done
+- Refaktoreringsplan från Node.js till Next.js
+- Risk management och kommunikation
 
-### Person 1: Backend & Databas - Mustafa
-- MongoDB setup och modeller
-- Express server konfiguration
-- API endpoints implementation
-- Autentisering och säkerhet
-- Bokningssystem backend
+### 🔌 [API Design](./docs/API_DESIGN.md)
+- RESTful API endpoints specifikation
+- Request/Response format med exempel
+- Autentisering och säkerhetsimplementation
+- Felhantering och statuskoder
+- Prestanda och caching strategier
 
-### Person 2: Frontend & UI - Christoffer
-- EJS templates och layouts
-- CSS styling och responsiv design
-- JavaScript för interaktivitet
-- Formulär och validering
-- Användarupplevelse
+### 🧪 [Testningsstrategi](./docs/TESTNINGSSTRATEGI.md)
+- Testpyramid (Unit/Integration/E2E)
+- Test frameworks och verktyg
+- Continuous Integration setup
+- Regression testing för refaktorering
+- Quality gates och coverage mål
 
-## Milstolpar
+## Funktioner
 
-### Vecka 1: Grundstruktur
-- [ ] Projektsetup och dependencies
-- [ ] MongoDB connection
-- [ ] Grundläggande Express server
-- [ ] Första EJS templates
+### Kärnfunktionalitet
+- [x] Användarregistrering och autentisering
+- [x] Filmkatalog med sök- och filtreringsfunktioner
+- [x] Platsbokning med interaktiv sittplatsplan
+- [x] Recensions- och betygsystem
+- [x] Administratörspanel för innehållshantering
 
-### Vecka 2: Kärnfunktioner
-- [ ] Användarsystem (registrering/inloggning)
-- [ ] Filmdatabas och API
-- [ ] Grundläggande frontend
+### Kommande Funktioner (Next.js Fas)
+- [x] Server-side rendering för bättre SEO
+- [x] React-baserad interaktiv UI
+- [x] Optimerad prestanda med Next.js
+- [x] Förbättrad användarupplevelse
 
-### Vecka 3: Avancerade funktioner
-- [ ] Bokningssystem
-- [ ] Recensionssystem
-- [ ] Tester implementation
+## Utveckling
 
-### Vecka 4: Finputsning
-- [ ] Bugfixar och optimering
-- [ ] Dokumentation
-- [ ] Förberedelse för Next.js refaktorering
+### Git Workflow
+Projektet använder Git Flow med följande branches:
+- `main` - Produktionsklar kod
+- `develop` - Integration branch
+- `feature/*` - Nya funktioner
+- `bugfix/*` - Buggfixar
 
-## Testning
-- **Enhetstester**: För utility funktioner
-- **Integrationstester**: För API endpoints
-- **Komponenttester**: För frontend komponenter
+### Code Style
+- ESLint för kodkvalitet
+- Prettier för formatering
+- JSDoc för dokumentation
+- Konsekvent namnkonvention (svenska eller engelska)
 
-## Git Workflow
-1. `main` branch för produktionsklar kod
-2. `develop` branch för integration
-3. Feature branches: `feature/login`, `feature/booking`, etc.
-4. Pull requests för alla ändringar
-5. Code review innan merge
+### Pull Request Process
+1. Skapa feature branch från `develop`
+2. Implementera funktionalitet med tester
+3. Öppna Pull Request med beskrivning
+4. Code review från teammedlem
+5. Merge efter godkännande
 
-## Refaktorering till Next.js
-- Behåll samma databas och API-struktur
-- Konvertera EJS templates till React komponenter
-- Flytta server-side logic till Next.js API routes
-- Implementera samma funktionalitet med React hooks
+## Testing
+
+Projektet använder en omfattande teststrategi:
+
+```powershell
+# Kör alla tester
+npm test
+
+# Specific test types
+npm run test:unit           # Enhetstester
+npm run test:integration    # Integrationstester
+npm run test:e2e           # End-to-end tester
+
+# Test coverage
+npm run test:coverage
+```
+
+**Coverage Mål:**
+- Funktioner: >80%
+- Rader: >70%
+- Branches: >70%
+
+## Deployment
+
+### Development
+```powershell
+npm run dev
+# Applikation tillgänglig på http://localhost:3000
+```
+
+### Production
+```powershell
+npm run build
+npm start
+```
+
+## Bidrag
+
+### För Projektmedlemmar
+1. Se [Projektledning dokumentation](./docs/PROJEKTLEDNING.md)
+2. Följ Git workflow och coding standards
+3. Säkerställ att tester passerar innan PR
+4. Delta aktivt i code reviews
+
+### Rapportera Problem
+- Skapa GitHub Issue med detaljerad beskrivning
+- Använd lämpliga labels (bug, enhancement, documentation)
+- Inkludera steps to reproduce för bugs
+
+## Support
+
+### Dokumentation
+- [API Dokumentation](./docs/API_DESIGN.md)
+- [Utvecklingsguide](./docs/PROJEKTLEDNING.md)
+- [Testguide](./docs/TESTNINGSSTRATEGI.md)
+
+### Kontakt
+- GitHub Issues för bug reports och feature requests
+- Projektmeetings för större diskussioner
+- Code reviews för tekniska frågor
+
+---
+
+**Status:** 🚧 Under utveckling - Node.js fas  
+**Nästa Milstolpe:** Refaktorering till Next.js  
+**Senast uppdaterad:** Juni 2025
