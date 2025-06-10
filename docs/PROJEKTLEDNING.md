@@ -17,7 +17,7 @@ Vi använder en förenklad Scrum-metod anpassad för ett 2-personersteam:
 - **Scrum Master**: Roterar varje sprint
 - **Development Team**: Båda medlemmar
 
-#### User Stories Format
+#### Format för Krav från användare/utvecklare.
 ```
 Som [användartyp]
 Vill jag [funktionalitet]
