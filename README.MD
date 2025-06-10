@@ -115,14 +115,14 @@ kino-site/
 
 ## Arbetsfördelning (2 personer)
 
-### Person 1: Backend & Databas
+### Person 1: Backend & Databas - Mustafa
 - MongoDB setup och modeller
 - Express server konfiguration
 - API endpoints implementation
 - Autentisering och säkerhet
 - Bokningssystem backend
 
-### Person 2: Frontend & UI
+### Person 2: Frontend & UI - Christoffer
 - EJS templates och layouts
 - CSS styling och responsiv design
 - JavaScript för interaktivitet
