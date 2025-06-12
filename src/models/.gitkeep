@@ -1,0 +1,2 @@
+# This file ensures the models directory is tracked by Git
+# MongoDB/Mongoose models (User, Movie, Booking, Review) will be placed here

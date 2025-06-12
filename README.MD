@@ -1,3 +1,7 @@
+# Kino-site
+
+En modern kinobiografshemsida byggd med Node.js som senare refaktoreras till Next.js. Projektet utvecklas som en del av en kursuppgift med fokus på full-stack utveckling och refaktorering.
+
 ## Projektöversikt
 
 Kino-site är en komplett webblösning för biografer som tillhandahåller:
@@ -116,10 +120,10 @@ Omfattande projektdokumentation finns i [`docs/`](./docs/) mappen:
 - [x] Administratörspanel för innehållshantering
 
 ### Kommande Funktioner (Next.js Fas)
-- [x] Server-side rendering för bättre SEO
-- [x] React-baserad interaktiv UI
-- [x] Optimerad prestanda med Next.js
-- [x] Förbättrad användarupplevelse
+- [ ] Server-side rendering för bättre SEO
+- [ ] React-baserad interaktiv UI
+- [ ] Optimerad prestanda med Next.js
+- [ ] Förbättrad användarupplevelse
 
 ## Utveckling
 
@@ -191,6 +195,10 @@ npm start
 - Skapa GitHub Issue med detaljerad beskrivning
 - Använd lämpliga labels (bug, enhancement, documentation)
 - Inkludera steps to reproduce för bugs
+
+## Licens
+
+Detta projekt utvecklas som en del av en kursuppgift och är inte avsett för kommersiell användning.
 
 ## Support
 

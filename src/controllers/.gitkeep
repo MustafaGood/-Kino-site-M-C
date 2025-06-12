@@ -1,0 +1,2 @@
+# This file ensures the controllers directory is tracked by Git
+# Express route controllers and business logic will be placed here
