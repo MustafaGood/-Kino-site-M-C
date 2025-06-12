@@ -98,10 +98,60 @@ app.use((req, res, next) => {
 });
 
 // Routes
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 app.get('/', (req, res) => {
   res.render('pages/index', { 
     title: 'Välkommen till Kino-site',
     page: 'home'
+  });
+});
+
+// Formulär för registrering
+app.get('/register', (req, res) => {
+  res.render('pages/register', { title: 'Registrera konto', page: 'register' });
+});
+
+app.post('/register', async (req, res) => {
+  const { username, email, password, firstName, lastName } = req.body;
+  try {
+    const User = require('./models/User');
+    const user = new User({ username, email, password, firstName, lastName });
+    await user.save();
+    req.session.userId = user._id;
+    req.session.user = user;
+    res.redirect('/');
+  } catch (err) {
+    res.render('pages/register', { title: 'Registrera konto', error: err.message, page: 'register' });
+  }
+});
+
+// Formulär för login
+app.get('/login', (req, res) => {
+  res.render('pages/login', { title: 'Logga in', page: 'login' });
+});
+
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const User = require('./models/User');
+    const user = await User.findOne({ username });
+    if (!user) throw new Error('Felaktigt användarnamn eller lösenord');
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) throw new Error('Felaktigt användarnamn eller lösenord');
+    req.session.userId = user._id;
+    req.session.user = user;
+    res.redirect('/');
+  } catch (err) {
+    res.render('pages/login', { title: 'Logga in', error: err.message, page: 'login' });
+  }
+});
+
+// Logout
+app.post('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.redirect('/');
   });
 });
 
@@ -116,7 +166,7 @@ app.get('/health', (req, res) => {
 
 // 404 Error handler
 app.use('*', (req, res) => {
-  res.status(404).render('pages/404', { 
+  res.status(404).render('pages/404', {
     title: 'Sida inte hittad',
     page: '404'
   });
@@ -125,9 +175,9 @@ app.use('*', (req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
   console.error('Error:', err.stack);
-  
+
   const isDevelopment = process.env.NODE_ENV !== 'production';
-  
+
   res.status(err.status || 500).render('pages/error', {
     title: 'Ett fel uppstod',
     page: 'error',
