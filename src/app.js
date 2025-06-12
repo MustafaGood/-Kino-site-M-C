@@ -59,20 +59,36 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Session middleware med MongoDB store
-app.use(session({
-  secret: process.env.SESSION_SECRET || 'kino-site-secret-key-change-in-production',
-  resave: false,
-  saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/kino-site'
-  }),
-  cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 // 24 timmar
-  }
-}));
+// Session middleware - only use MongoDB store in production
+if (process.env.NODE_ENV === 'production') {
+  // Production: Use MongoDB store
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'kino-site-secret-key-change-in-production',
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/kino-site'
+    }),
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 // 24 timmar
+    }
+  }));
+} else {
+  // Development/Test: Use memory store (no external MongoDB)
+  app.use(session({
+    secret: process.env.SESSION_SECRET || 'kino-site-secret-key-change-in-production',
+    resave: false,
+    saveUninitialized: false,
+    // No store specified = uses memory store
+    cookie: {
+      secure: false,
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 // 24 timmar
+    }
+  }));
+}
 
 // Middleware för att göra användarinfo tillgänglig i alla templates
 app.use((req, res, next) => {

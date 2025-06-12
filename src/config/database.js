@@ -23,11 +23,12 @@ const connectDB = async () => {
     } else if (envConfig.usePortableMongoDB) {
       // UTVECKLING/TEST: Använd MongoDB Memory Server (portable)
       console.log('🔧 Utvecklings/Test-miljö - använder portable MongoDB');
-      
+      6
       // Blockera extern MongoDB i utvecklingsmiljö för säkerhet
       if (process.env.MONGODB_URI && 
           !process.env.MONGODB_URI.includes('localhost') && 
-          !process.env.MONGODB_URI.includes('127.0.0.1')) {
+          !process.env.MONGODB_URI.includes('127.0.0.1') &&
+          process.env.NODE_ENV == 'development') {
         console.log('🛡️  Ignorerar extern MONGODB_URI i utvecklingsmiljö för datasäkerhet');
       }
       
