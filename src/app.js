@@ -112,6 +112,9 @@ app.use((req, res, next) => {
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
+const movieRoutes = require('./routes/movies');
+app.use('/movies', movieRoutes);
+
 app.get('/', (req, res) => {
   res.render('pages/index', {
     title: 'Välkommen till Kino-site',
