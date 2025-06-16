@@ -11,6 +11,33 @@ Kino-site är en komplett webblösning för biografer som tillhandahåller:
 - **Användarkonton** - Registrering, inloggning och profilhantering
 - **Recensionssystem** - Skriv och läs filmrecensioner
 - **Administratörspanel** - Hantera filmer, visningar och bokningar
+```
+
+## Dokumentation
+
+Omfattande projektdokumentation finns i [`docs/`](./docs/) mappen:
+
+### 📋 [Projektledning](./docs/PROJEKTLEDNING.md)
+- Agil projektmetod och Sprint planning
+- Git workflow och branching strategy
+- Kvalitetskriterier och Definition of Done
+- Refaktoreringsplan från Node.js till Next.js
+- Risk management och kommunikation
+
+### 🔌 [API Design](./docs/API_DESIGN.md)
+- RESTful API endpoints specifikation
+- Request/Response format med exempel
+- Autentisering och säkerhetsimplementation
+- Felhantering och statuskoder
+- Prestanda och caching strategier
+
+### 🧪 [Testningsstrategi](./docs/TESTNINGSSTRATEGI.md)
+- Testpyramid (Unit/Integration/E2E)
+- Test frameworks och verktyg
+- Continuous Integration setup
+- Regression testing för refaktorering
+- Quality gates och coverage mål
+```
 
 ## Teknisk Stack
 
@@ -84,31 +111,6 @@ kino-site-M-C/
 ├── tests/                  # Test suites
 └── package.json           # Projekt konfiguration
 ```
-
-## Dokumentation
-
-Omfattande projektdokumentation finns i [`docs/`](./docs/) mappen:
-
-### 📋 [Projektledning](./docs/PROJEKTLEDNING.md)
-- Agil projektmetod och Sprint planning
-- Git workflow och branching strategy
-- Kvalitetskriterier och Definition of Done
-- Refaktoreringsplan från Node.js till Next.js
-- Risk management och kommunikation
-
-### 🔌 [API Design](./docs/API_DESIGN.md)
-- RESTful API endpoints specifikation
-- Request/Response format med exempel
-- Autentisering och säkerhetsimplementation
-- Felhantering och statuskoder
-- Prestanda och caching strategier
-
-### 🧪 [Testningsstrategi](./docs/TESTNINGSSTRATEGI.md)
-- Testpyramid (Unit/Integration/E2E)
-- Test frameworks och verktyg
-- Continuous Integration setup
-- Regression testing för refaktorering
-- Quality gates och coverage mål
 
 ## Funktioner
 
