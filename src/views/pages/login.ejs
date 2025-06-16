@@ -1,0 +1,19 @@
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+  <div class="w-100" style="max-width: 420px;">
+    <h2 class="text-center mb-4">Logga in</h2>
+    <% if (typeof error !== 'undefined') { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+    <form action="/login" method="POST">
+      <div class="mb-3">
+        <label for="username" class="form-label">Användarnamn</label>
+        <input type="text" id="username" name="username" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Lösenord</label>
+        <input type="password" id="password" name="password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Logga in</button>
+    </form>
+  </div>
+</div>

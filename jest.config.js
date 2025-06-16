@@ -57,5 +57,9 @@ module.exports = {
   // Miljövariabler för tester
   testEnvironmentOptions: {
     NODE_ENV: 'test'
-  }
+  },
+  
+  // Lägg till roots och moduleFileExtensions för bredare stöd
+  roots: ['<rootDir>/src', '<rootDir>/tests'],
+  moduleFileExtensions: ['js', 'json'],
 };

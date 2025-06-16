@@ -1,0 +1,53 @@
+<%- include('../layouts/main') -%>
+
+<div class="container mt-4">
+  <h1>Filmer</h1>
+  <form method="get" action="/movies" class="mb-3 row g-2 align-items-end">
+    <div class="col-md-4">
+      <input type="text" name="search" class="form-control" placeholder="Sök titel..." value="<%= search || '' %>">
+    </div>
+    <div class="col-md-3">
+      <select name="genre" class="form-select">
+        <option value="">Alla genrer</option>
+        <% const genres = [...new Set(movies.flatMap(m => m.genre))]; genres.forEach(g => { %>
+          <option value="<%= g %>" <%= genre === g ? 'selected' : '' %>><%= g %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select name="sort" class="form-select">
+        <option value="">Sortera efter</option>
+        <option value="title" <%= sort === 'title' ? 'selected' : '' %>>Titel (A-Ö)</option>
+        <option value="releaseDate" <%= sort === 'releaseDate' ? 'selected' : '' %>>Utgivningsdatum (nyast)</option>
+        <option value="rating" <%= sort === 'rating' ? 'selected' : '' %>>Betyg</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <button type="submit" class="btn btn-primary w-100">Sök</button>
+    </div>
+  </form>
+
+  <% if (movies.length === 0) { %>
+    <div class="alert alert-info">Inga filmer matchar din sökning.</div>
+  <% } else { %>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% movies.forEach(movie => { %>
+        <div class="col">
+          <div class="card h-100">
+            <% if (movie.posterUrl) { %>
+              <img src="<%= movie.posterUrl %>" class="card-img-top" alt="<%= movie.title %>">
+            <% } %>
+            <div class="card-body">
+              <h5 class="card-title"><%= movie.title %></h5>
+              <p class="card-text"><%= movie.description.substring(0, 100) %>...</p>
+              <span class="badge bg-secondary"><%= movie.genre.join(', ') %></span>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Utgiven: <%= movie.releaseDate ? movie.releaseDate.toISOString().slice(0,10) : 'Okänt' %></small>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
