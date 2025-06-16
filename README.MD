@@ -11,7 +11,7 @@ Kino-site är en komplett webblösning för biografer som tillhandahåller:
 - **Användarkonton** - Registrering, inloggning och profilhantering
 - **Recensionssystem** - Skriv och läs filmrecensioner
 - **Administratörspanel** - Hantera filmer, visningar och bokningar
-```
+
 
 ## Dokumentation
 
@@ -37,7 +37,7 @@ Omfattande projektdokumentation finns i [`docs/`](./docs/) mappen:
 - Continuous Integration setup
 - Regression testing för refaktorering
 - Quality gates och coverage mål
-```
+
 
 ## Teknisk Stack
 
