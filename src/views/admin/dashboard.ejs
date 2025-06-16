@@ -1,0 +1,78 @@
+<div class="container mt-4">
+  <h1>Admin Dashboard</h1>
+  
+  <div class="row mt-4">
+    <!-- Statistik kort -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Filmer</h5>
+          <p class="card-text display-4"><%= moviesCount %></p>
+          <a href="/admin/movies" class="btn btn-primary">Hantera filmer</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Visningstider</h5>
+          <p class="card-text display-4"><%= showtimesCount %></p>
+          <a href="/admin/showtimes" class="btn btn-primary">Hantera visningstider</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kommande visningar -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Kommande visningar</h5>
+          <% if (upcomingShowtimes.length > 0) { %>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Film</th>
+                    <th>Datum</th>
+                    <th>Tid</th>
+                    <th>Salong</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% upcomingShowtimes.forEach(showtime => { %>
+                    <tr>
+                      <td><%= showtime.movie.title %></td>
+                      <td><%= new Date(showtime.date).toLocaleDateString('sv-SE') %></td>
+                      <td><%= new Date(showtime.date).toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' }) %></td>
+                      <td><%= showtime.theater %></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          <% } else { %>
+            <p class="text-muted">Inga kommande visningar</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Snabbåtgärder -->
+  <div class="row mt-4 mb-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Snabbåtgärder</h5>
+          <div class="d-flex gap-2">
+            <a href="/admin/movies/new" class="btn btn-success">Lägg till ny film</a>
+            <a href="/admin/showtimes/new" class="btn btn-success">Lägg till ny visningstid</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,30 @@ const validateEnvironment = () => {
   const environment = process.env.NODE_ENV || 'development';
 
   console.log(`🔍 Validerar miljökonfiguration för: ${environment}`);
+  // Validera admin-credentials
+  if (!process.env.ADMIN_EMAIL || !process.env.ADMIN_PASSWORD) {
+    console.warn(`
+⚠️ VARNING: ADMIN_EMAIL och/eller ADMIN_PASSWORD är inte satta!
+   Kontrollera att både ADMIN_EMAIL och ADMIN_PASSWORD finns i .env filen.
+   Detta krävs för att skapa admin-kontot.
+   `);
+  }
+  
+  if (environment === 'production') {
+    if (process.env.ADMIN_PASSWORD === 'admin123') {
+      throw new Error(`
+❌ SÄKERHETSRISK: Standard admin-lösenord används i produktion!
+   Ändra ADMIN_PASSWORD till ett säkert lösenord i produktionsmiljö.
+   `);
+    }
+    
+    if (!process.env.ADMIN_EMAIL?.includes('@')) {
+      throw new Error(`
+❌ VALIDERINGSFEL: ADMIN_EMAIL måste vara en giltig e-postadress i produktion!
+   Nuvarande värde: ${process.env.ADMIN_EMAIL}
+   `);
+    }
+  }
 
   if (environment === 'production') {
     // I PRODUKTION: Kräv extern MongoDB URI

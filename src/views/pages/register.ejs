@@ -1,8 +1,7 @@
 <div class="container d-flex align-items-center justify-content-center" style="min-height: 80vh;">
   <div class="w-100" style="max-width: 420px;">
-    <h2 class="text-center mb-4">Registrera konto</h2>
-    <% if (typeof error !== 'undefined') { %>
-      <div class="alert alert-danger"><%= error %></div>
+    <h2 class="text-center mb-4">Registrera konto</h2>    <% if (locals.flash && flash.error) { %>
+      <div class="alert alert-danger"><%= flash.error %></div>
     <% } %>
     <form action="/register" method="POST">
       <div class="mb-3">
