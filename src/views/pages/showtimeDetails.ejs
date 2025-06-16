@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h1>Visningsdetaljer</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <% if (showtime.movieId && showtime.movieId.posterUrl) { %>
+        <img src="<%= showtime.movieId.posterUrl %>" class="img-fluid rounded mb-3" alt="<%= showtime.movieTitle %>">
+      <% } %>
+    </div>
+    <div class="col-md-8">
+      <h2><%= showtime.movieTitle %></h2>
+      <p><strong>Datum:</strong> <%= showtime.date.toISOString().slice(0,10) %></p>
+      <p><strong>Tid:</strong> <%= showtime.time %></p>
+      <p><strong>Salong:</strong> <%= showtime.theater %></p>
+      <p><strong>Platser kvar:</strong> <%= showtime.availableSeats %> / <%= showtime.totalSeats %></p>
+      <p><strong>Pris:</strong> <%= showtime.price %> kr</p>
+      <% if (showtime.movieId) { %>
+        <a href="/movies/<%= showtime.movieId._id %>" class="btn btn-outline-primary">Visa film</a>
+      <% } %>
+      <a href="/visningar" class="btn btn-secondary mt-2">Tillbaka till visningar</a>
+    </div>
+  </div>
+</div>

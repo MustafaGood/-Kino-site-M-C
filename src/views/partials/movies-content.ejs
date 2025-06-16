@@ -1,0 +1,151 @@
+<div class="container mt-4">
+  <h1 class="mb-4">Filmer</h1>
+  
+  <!-- Search and Filter Form -->
+  <form method="get" action="/filmer" class="mb-4">
+    <div class="row g-3">
+      <!-- Search Input -->
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-search"></i>
+          </span>
+          <input 
+            type="text" 
+            name="search" 
+            class="form-control" 
+            placeholder="Sök efter film..." 
+            value="<%= search || '' %>"
+          >
+        </div>
+      </div>
+      
+      <!-- Genre Filter -->
+      <div class="col-md-3">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-film"></i>
+          </span>
+          <select name="genre" class="form-select">
+            <option value="">Alla genrer</option>
+            <% genres.forEach(g => { %>
+              <option value="<%= g %>" <%= selectedGenre === g ? 'selected' : '' %>>
+                <%= g %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Sort Options -->
+      <div class="col-md-3">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-sort"></i>
+          </span>
+          <select name="sort" class="form-select">
+            <option value="">Sortera efter</option>
+            <option value="title" <%= selectedSort === 'title' ? 'selected' : '' %>>
+              Titel (A-Ö)
+            </option>
+            <option value="releaseDate" <%= selectedSort === 'releaseDate' ? 'selected' : '' %>>
+              Utgivningsdatum (nyast)
+            </option>
+            <option value="rating" <%= selectedSort === 'rating' ? 'selected' : '' %>>
+              Betyg (högst)
+            </option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Submit Button -->
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="fas fa-filter me-2"></i>Sök
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Error Message -->
+  <% if (error) { %>
+    <div class="alert alert-danger">
+      <i class="fas fa-exclamation-circle me-2"></i>
+      <%= error %>
+    </div>
+  <% } %>
+
+  <!-- Results Section -->
+  <% if (movies.length === 0) { %>
+    <div class="alert alert-info">
+      <i class="fas fa-info-circle me-2"></i>
+      Inga filmer matchar din sökning.
+    </div>
+  <% } else { %>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      <% movies.forEach(movie => { %>
+        <div class="col">
+          <a href="/filmer/<%= movie._id %>" class="text-decoration-none text-dark">
+            <div class="card h-100 shadow-sm hover-shadow">
+              <% if (movie.posterUrl) { %>
+                <img 
+                  src="<%= movie.posterUrl %>" 
+                  class="card-img-top" 
+                  alt="<%= movie.title %>"
+                  style="height: 300px; object-fit: cover;"
+                >
+              <% } else { %>
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                  <i class="fas fa-film text-muted fa-3x"></i>
+                </div>
+              <% } %>
+              
+              <div class="card-body">
+                <h5 class="card-title text-truncate"><%= movie.title %></h5>
+                <p class="card-text text-muted">
+                  <%= movie.description.substring(0, 100) %>...
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-2">
+                  <% movie.genre.forEach(g => { %>
+                    <span class="badge bg-secondary">
+                      <i class="fas fa-tag me-1"></i><%= g %>
+                    </span>
+                  <% }) %>
+                </div>
+              </div>
+              
+              <div class="card-footer bg-white">
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">
+                    <i class="fas fa-calendar me-1"></i>
+                    <%= movie.releaseDate ? movie.releaseDate.toISOString().slice(0,10) : 'Okänt' %>
+                  </small>
+                  <% if (movie.rating) { %>
+                    <span class="badge bg-info">
+                      <i class="fas fa-star me-1"></i><%= movie.rating %>
+                    </span>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+
+    <!-- Pagination -->
+    <% if (totalPages > 1) { %>
+      <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+          <% for(let i = 1; i <= totalPages; i++) { %>
+            <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+              <a class="page-link" href="/filmer?page=<%= i %><%= search ? '&search=' + search : '' %><%= selectedGenre ? '&genre=' + selectedGenre : '' %><%= selectedSort ? '&sort=' + selectedSort : '' %>">
+                <%= i %>
+              </a>
+            </li>
+          <% } %>
+        </ul>
+      </nav>
+    <% } %>
+  <% } %>
+</div> 

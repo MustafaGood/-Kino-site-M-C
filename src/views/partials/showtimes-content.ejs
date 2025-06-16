@@ -1,0 +1,123 @@
+<div class="container mt-4">
+  <h1 class="mb-4">Visningar</h1>
+  
+  <!-- Search and Filter Form -->
+  <form method="get" action="/visningar" class="mb-4">
+    <div class="row g-3">
+      <!-- Search Input -->
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-search"></i>
+          </span>
+          <input 
+            type="text" 
+            name="search" 
+            class="form-control" 
+            placeholder="Sök efter film..." 
+            value="<%= search || '' %>"
+          >
+        </div>
+      </div>
+      
+      <!-- Date Filter -->
+      <div class="col-md-3">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-calendar"></i>
+          </span>
+          <input 
+            type="date" 
+            name="date" 
+            class="form-control" 
+            value="<%= date || '' %>"
+          >
+        </div>
+      </div>
+      
+      <!-- Sort Options -->
+      <div class="col-md-3">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-sort"></i>
+          </span>
+          <select name="sort" class="form-select">
+            <option value="">Sortera efter</option>
+            <option value="date" <%= sort === 'date' ? 'selected' : '' %>>
+              Datum (tidigast)
+            </option>
+            <option value="time" <%= sort === 'time' ? 'selected' : '' %>>
+              Tid
+            </option>
+            <option value="price" <%= sort === 'price' ? 'selected' : '' %>>
+              Pris (lägst)
+            </option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Submit Button -->
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">
+          <i class="fas fa-filter me-2"></i>Sök
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Results Section -->
+  <% if (showtimes.length === 0) { %>
+    <div class="alert alert-info">
+      <i class="fas fa-info-circle me-2"></i>
+      Inga visningar tillgängliga.
+    </div>
+  <% } else { %>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <% showtimes.forEach(showtime => { %>
+        <div class="col">
+          <div class="card h-100 shadow-sm hover-shadow">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-film text-primary me-2"></i>
+                <%= showtime.movieTitle %>
+              </h5>
+              
+              <div class="mb-3">
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-calendar text-muted me-2"></i>
+                  <%= showtime.date.toLocaleDateString('sv-SE') %>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-clock text-muted me-2"></i>
+                  <%= showtime.time %>
+                </div>
+                <div class="d-flex align-items-center mb-2">
+                  <i class="fas fa-door-open text-muted me-2"></i>
+                  <%= showtime.theater %>
+                </div>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-chair text-muted me-2"></i>
+                  <span class="badge bg-success">
+                    <%= showtime.availableSeats %> platser kvar
+                  </span>
+                </div>
+                <div class="text-primary fw-bold">
+                  <%= showtime.price %> kr
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-footer bg-white">
+              <a href="/visningar/<%= showtime._id %>" class="btn btn-primary w-100">
+                <i class="fas fa-ticket-alt me-2"></i>Boka biljett
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div> 

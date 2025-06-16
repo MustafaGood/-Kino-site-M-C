@@ -112,8 +112,11 @@ app.use((req, res, next) => {
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
-const movieRoutes = require('./routes/movies');
-app.use('/movies', movieRoutes);
+const filmerRoutes = require('./routes/movies');
+app.use('/filmer', filmerRoutes);
+
+const showtimeRoutes = require('./routes/showtimes');
+app.use('/visningar', showtimeRoutes);
 
 app.get('/', (req, res) => {
   res.render('pages/index', {
