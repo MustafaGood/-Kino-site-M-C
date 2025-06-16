@@ -6,3 +6,10 @@ node_modules/
 dist/
 build/
 uploads/
+
+# MongoDB Memory Server cache
+mongodb-binaries/
+.mongodb-memory-server/
+
+# Test coverage
+coverage/

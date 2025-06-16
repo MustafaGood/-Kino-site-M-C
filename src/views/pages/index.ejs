@@ -1,0 +1,158 @@
+<%- include('../layouts/main', { body: `
+<div class="hero-section bg-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">
+                    <i class="fas fa-film me-3"></i>
+                    Välkommen till Kino-site
+                </h1>
+                <p class="lead mb-4">
+                    Upptäck de senaste filmerna, boka dina favoritplatser och dela dina recensioner med andra filmälskare.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="/filmer" class="btn btn-light btn-lg">
+                        <i class="fas fa-video me-2"></i>
+                        Utforska Filmer
+                    </a>
+                    <a href="/visningar" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-calendar me-2"></i>
+                        Se Visningar
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <i class="fas fa-theater-masks display-1 opacity-75"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <section class="mb-5">
+                <h2 class="h3 mb-4">
+                    <i class="fas fa-star text-warning me-2"></i>
+                    Populära Filmer
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="fas fa-image text-muted fa-3x"></i>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Kommande filmer</h5>
+                                <p class="card-text text-muted">Filmkatalog implementeras i Sprint 2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="fas fa-image text-muted fa-3x"></i>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Fler filmer</h5>
+                                <p class="card-text text-muted">Snart tillgängligt</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                                <i class="fas fa-image text-muted fa-3x"></i>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Nya släpp</h5>
+                                <p class="card-text text-muted">Under utveckling</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <div class="col-lg-4">
+            <section class="mb-5">
+                <h3 class="h4 mb-3">
+                    <i class="fas fa-clock text-info me-2"></i>
+                    Dagens Visningar
+                </h3>
+                <div class="card">
+                    <div class="card-body text-center py-4">
+                        <i class="fas fa-calendar-alt text-muted fa-3x mb-3"></i>
+                        <h5>Visningar kommer snart</h5>
+                        <p class="text-muted">Visningssystem implementeras i Sprint 3</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h3 class="h4 mb-3">
+                    <i class="fas fa-info-circle text-success me-2"></i>
+                    Om Kino-site
+                </h3>
+                <div class="card">
+                    <div class="card-body">
+                        <p>Kino-site är din kompletta plattform för filmupplevelser. Här kan du:</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Boka biobiljetter online
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Läsa och skriva recensioner
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Upptäcka nya filmer
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-hourglass-half text-warning me-2"></i>
+                                Hantera dina bokningar (utvecklas)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-ticket-alt text-primary fa-3x mb-3"></i>
+                        <h4>Enkel Bokning</h4>
+                        <p class="text-muted">Boka dina biljetter snabbt och enkelt online</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-users text-primary fa-3x mb-3"></i>
+                        <h4>Community</h4>
+                        <p class="text-muted">Dela dina åsikter och upptäck nya filmer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <i class="fas fa-mobile-alt text-primary fa-3x mb-3"></i>
+                        <h4>Mobilanpassad</h4>
+                        <p class="text-muted">Fungerar perfekt på alla enheter</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+` }) %>
