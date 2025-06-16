@@ -3,9 +3,18 @@ const router = express.Router();
 const authController = require('../controllers/authController');
 const authMiddleware = require('../middleware/auth');
 
-router.post('/register', authController.register);
+// Visa login/register sidor
+router.get('/login', authController.getLogin);
+
+// Auth actions
 router.post('/login', authController.login);
-router.post('/logout', authController.logout);
+router.post('/register', authController.register);
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
+
+// Skyddade routes
 router.get('/me', authMiddleware, authController.me);
 
 module.exports = router;
